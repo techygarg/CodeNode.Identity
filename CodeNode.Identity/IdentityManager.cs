@@ -636,13 +636,12 @@ namespace CodeNode.Identity
         ///     Sends the two factor code.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        /// <param name="provider">The provider.</param>
-        public void SendTwoFactorCode(Guid userId, string provider)
+        public void SendTwoFactorCode(Guid userId)
         {
             Utils.EnsureNotNull(userId, "userId");
 
-            var token = ApplicationUserManager.GenerateTwoFactorToken(userId, provider);
-            ApplicationUserManager.NotifyTwoFactorToken(userId, provider, token);
+            var token = ApplicationUserManager.GenerateTwoFactorToken(userId, IdentityConstants.EmailTwoFactorProviderName);
+            ApplicationUserManager.NotifyTwoFactorToken(userId, IdentityConstants.EmailTwoFactorProviderName, token);
         }
 
         /// <summary>

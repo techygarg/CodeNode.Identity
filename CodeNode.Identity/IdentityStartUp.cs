@@ -10,13 +10,13 @@ using Owin;
 
 namespace CodeNode.Identity
 {
-    public static class IdentityStartUp<TUser> where TUser : ApplicationUser, IUser<Guid>
+    public static class IdentityStartUp<TUser1> where TUser1 : ApplicationUser, IUser<Guid>
     {
         /// <summary>
         ///     Configurations the specified application.
         /// </summary>
         /// <param name="app">The application.</param>
-        public static void ConfigureOAuthSettings(IAppBuilder app)
+        public static void ConfigureOAuthSettings<TUser>(IAppBuilder app) where TUser : ApplicationUser, IUser<Guid>
         {
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
